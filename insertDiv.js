@@ -1,12 +1,12 @@
-// Створюємо дів єлеменнт
+// Create div element
 const myDiv = document.createElement("div");
 
 const randomText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
-// втавляэмо текст у дів
+// Set text as content of the div
 myDiv.textContent = randomText;
 
-// стилі для єлемента
+// Apply styles
 myDiv.style.width = "100%";
 myDiv.style.marginTop = "10px";
 myDiv.style.marginBottom = "10px";
@@ -18,38 +18,38 @@ myDiv.style.display = "flex";
 myDiv.style.alignItems = "center";
 myDiv.style.justifyContent = "center";
 
-// створюю медіа запити
+// Media queries
 const mediaQueryMobile = window.matchMedia("(max-width: 767px)");
 const mediaQueryTablet = window.matchMedia(
   "(min-width: 768px) and (max-width: 1199px)"
 );
 
-// Функція для обробки медіа запитів
+// Function to handle the media query changes
 function handleMediaQueryChange() {
   if (mediaQueryMobile.matches) {
-    // Для мобільних (ширина < 768px)
-    myDiv.style.width = "100% - 2rem"; // Займає всю ширину
+    // For mobile (width < 768px)
+    myDiv.style.width = "100% - 2rem";
   } else if (mediaQueryTablet.matches) {
-    // Для планшетних пристроїв (ширина від 768px до 1199px)
-    myDiv.style.width = "calc(66.66% - 2rem)"; // Займає 2/3 контейнера
+    // For tablet (width  768px - 1199px)
+    myDiv.style.width = "calc(66.66% - 2rem)";
   } else {
-    // Для пристроїв с шириной єкрана 1200px та вище
-    myDiv.style.width = "calc(50% - 2rem)"; // Займає 50% контейнера
+    // For devices with screen width >= 1200px
+    myDiv.style.width = "calc(50% - 2rem)";
   }
 }
 
-// Додаємо слухачів подій до медіа запитів
+// Add an event listener for the media query(they dont work properly when using script from the console)
 mediaQueryMobile.addEventListener(handleMediaQueryChange);
 mediaQueryTablet.addEventListener(handleMediaQueryChange);
 
-// функція для втавки єлемента
+// Function to insert the myDiv
 function insertMyDiv() {
   const productsContainer = document.querySelector(".product-items"); // обираємо батьківський контейнер для продуктів
   const fourthProduct = productsContainer.querySelectorAll(".product-item")[3]; // отримуємо 4 продукт
   if (fourthProduct) {
     productsContainer.insertBefore(myDiv, fourthProduct.nextElementSibling);
   } else {
-    // обробляємо помілку в разі якщо не буде знайдено четвертого елемента
+    // Handle the case where the fourth product is not found
     console.error("Fourth product not found.");
   }
 }
